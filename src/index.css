@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #F9FAFB;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Native radio styling */
+input[type="radio"] {
+  accent-color: #2E6DA4;
+}
+
+/* Native select — reset arrow */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Print — show only the lease paper */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .lease-paper,
+  .lease-paper * {
+    visibility: visible;
+  }
+  .lease-paper {
+    position: fixed;
+    inset: 0;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 56px 72px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+}
