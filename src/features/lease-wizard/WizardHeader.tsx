@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 const dealAgentUrl = 'https://www.figma.com/api/mcp/asset/13463174-dfdc-459c-a08b-a445efcd894c';
 
 export function WizardHeader() {
+  const navigate = useNavigate();
   return (
     <div
       className="fixed top-0 left-0 right-0 z-50 h-[100px] bg-white"
@@ -28,7 +31,7 @@ export function WizardHeader() {
 
       {/* TextLink Bright / Large */}
       <button
-        onClick={() => {}}
+        onClick={() => navigate('/documents')}
         className="absolute right-[24px] top-1/2 -translate-y-1/2 text-[16px] font-normal leading-[24px] tracking-[0.128px] text-[#006ECE] bg-transparent border-none cursor-pointer p-0 hover:underline"
         style={{ fontFamily: "'Open Sans', sans-serif" }}
       >

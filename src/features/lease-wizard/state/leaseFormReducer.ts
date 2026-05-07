@@ -24,6 +24,9 @@ export const initialState: LeaseFormState = {
   endDate: '',
   rentAmount: '',
   rentDueDay: '',
+  proRateFrom: '',
+  proRateTo: '',
+  proRateAmount: '',
   securityDeposit: '',
   paymentMethod: '',
   errors: {},
@@ -52,13 +55,15 @@ export function leaseFormReducer(state: LeaseFormState, action: LeaseFormAction)
       return { ...state, currentStep: Math.max(1, state.currentStep - 1), errors: {} };
     case 'GOTO_STEP':
       return { ...state, currentStep: action.step, errors: {} };
+    case 'GOTO_STEP_WITH_ERRORS':
+      return { ...state, currentStep: action.step, errors: action.errors };
     default:
       return state;
   }
 }
 
 const STEP_PROGRESS: Record<number, number> = {
-  1: 0, 2: 2, 3: 6, 4: 8, 5: 12, 6: 14, 7: 16, 8: 100,
+  1: 4, 2: 6, 3: 8, 4: 10, 5: 12, 6: 14, 7: 100, 8: 100,
 };
 
 export function getProgress(step: number): number {
@@ -76,4 +81,37 @@ export function canContinue(step: number, state: LeaseFormState): boolean {
     case 7: return !!state.startDate && !!state.endDate && !!state.rentAmount;
     default: return true;
   }
+}
+
+export function allStepsComplete(state: LeaseFormState): boolean {
+  return [1, 2, 3, 4, 5, 6, 7].every(step => canContinue(step, state));
+}
+
+export function validateStep(step: number, state: LeaseFormState): Record<string, string> {
+  const errors: Record<string, string> = {};
+  switch (step) {
+    case 1:
+      if (!state.landlordType) errors.landlordType = 'Please select an option';
+      break;
+    case 2:
+      if (!state.landlordPhone) errors.landlordPhone = 'Phone number is required';
+      if (!state.landlordEmail) errors.landlordEmail = 'Email address is required';
+      break;
+    case 4:
+      if (!state.minors) errors.minors = 'Please select an option';
+      break;
+    case 5:
+      if (!state.propertyType) errors.propertyType = 'Please select a property type';
+      break;
+    case 6:
+      if (!state.propertyStreet) errors.propertyStreet = 'Street address is required';
+      if (!state.propertyCity) errors.propertyCity = 'City is required';
+      break;
+    case 7:
+      if (!state.startDate) errors.startDate = 'Lease start date is required';
+      if (!state.endDate) errors.endDate = 'Lease end date is required';
+      if (!state.rentAmount) errors.rentAmount = 'Monthly rent is required';
+      break;
+  }
+  return errors;
 }

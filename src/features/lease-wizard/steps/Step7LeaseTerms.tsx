@@ -62,6 +62,27 @@ export function Step7LeaseTerms({ state, dispatch }: Props) {
           error={state.errors.rentDueDay}
         />
         <Input
+          label="Pro-rated rent from (date)"
+          name="proRateFrom"
+          value={state.proRateFrom}
+          onChange={field('proRateFrom')}
+          error={state.errors.proRateFrom}
+        />
+        <Input
+          label="Pro-rated rent to (date)"
+          name="proRateTo"
+          value={state.proRateTo}
+          onChange={field('proRateTo')}
+          error={state.errors.proRateTo}
+        />
+        <Input
+          label="Pro-rated daily rate ($)"
+          name="proRateAmount"
+          value={state.proRateAmount}
+          onChange={field('proRateAmount')}
+          error={state.errors.proRateAmount}
+        />
+        <Input
           label="Security deposit ($)"
           name="securityDeposit"
           value={state.securityDeposit}

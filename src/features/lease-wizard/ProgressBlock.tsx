@@ -2,16 +2,18 @@ import { getProgress } from './state/leaseFormReducer';
 
 interface ProgressBlockProps {
   step: number;
+  propertyState?: string;
 }
 
-export function ProgressBlock({ step }: ProgressBlockProps) {
+export function ProgressBlock({ step, propertyState }: ProgressBlockProps) {
   const pct = getProgress(step);
+  const label = propertyState ? `${propertyState} lease agreement` : 'Lease agreement';
 
   return (
     <div className="flex flex-col gap-[8px]">
       <div className="flex items-center justify-between">
         <span className="text-[14px] font-normal leading-[20px] text-[#545D66] tracking-[0.14px]">
-          California lease agreement
+          {label}
         </span>
         <span className="text-[14px] font-bold leading-[20px] text-[#545D66] tracking-[0.07px]"
           style={{ fontFeatureSettings: "'lnum' 1, 'tnum' 1" }}

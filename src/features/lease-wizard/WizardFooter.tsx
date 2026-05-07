@@ -1,11 +1,10 @@
 interface WizardFooterProps {
   step: number;
-  canContinue: boolean;
   onBack: () => void;
   onContinue: () => void;
 }
 
-export function WizardFooter({ step, canContinue, onBack, onContinue }: WizardFooterProps) {
+export function WizardFooter({ step, onBack, onContinue }: WizardFooterProps) {
   const isLastStep = step === 7;
 
   return (
@@ -24,13 +23,7 @@ export function WizardFooter({ step, canContinue, onBack, onContinue }: WizardFo
 
       <button
         onClick={onContinue}
-        disabled={!canContinue}
-        className={[
-          'h-[48px] px-[16px] py-[12px] rounded-[6px] text-[16px] font-bold leading-[24px] text-white transition-colors',
-          canContinue
-            ? 'bg-[#2E6DA4] cursor-pointer hover:bg-[#255a8a]'
-            : 'bg-[#2E6DA4] opacity-40 cursor-not-allowed',
-        ].join(' ')}
+        className="h-[48px] px-[16px] py-[12px] rounded-[6px] text-[16px] font-bold leading-[24px] text-white bg-[#2E6DA4] cursor-pointer hover:bg-[#255a8a] transition-colors"
         style={{ fontFamily: "'Open Sans', sans-serif" }}
       >
         {isLastStep ? 'Generate lease' : 'Continue'}

@@ -59,6 +59,20 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
         className="max-w-[968px] mx-auto bg-white rounded-[4px] px-[72px] py-[64px]"
         style={{ boxShadow: '0 2px 16px rgba(23,24,24,0.05), 0 1px 4px rgba(23,24,24,0.04)' }}
       >
+        <div style={{
+          backgroundColor: '#FFF8E1',
+          border: '1px solid #F5C518',
+          borderRadius: '4px',
+          padding: '10px 16px',
+          marginBottom: '32px',
+          fontFamily: "'Open Sans', sans-serif",
+          fontSize: '12px',
+          color: '#6D5700',
+          textAlign: 'center',
+        }}>
+          This is a prototype lease for testing purposes only.
+        </div>
+
         <h1
           style={{
             fontFamily: "'Open Sans', sans-serif",
@@ -69,7 +83,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
             color: '#282B2F',
           }}
         >
-          California Lease Agreement
+          {stateLabel(s.propertyState) ? <><Pill value={stateLabel(s.propertyState)} step={6} />{' '}</> : null}Lease Agreement
         </h1>
 
         <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: '13.5px', lineHeight: '1.85', color: '#282B2F' }}>
@@ -85,7 +99,8 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
             <strong>Leased Property.</strong> The Landlord hereby leases to the Tenant the{' '}
             {propertyTypeLabel ? propertyTypeLabel.toLowerCase() : 'property'} located at
             <Pill value={s.propertyStreet} step={6} />,
-            <Pill value={s.propertyCity} step={6} />, California
+            <Pill value={s.propertyCity} step={6} />,
+            <Pill value={stateLabel(s.propertyState) || undefined} step={6} />
             <Pill value={s.propertyZip} step={6} />
             {' '}("Leased Property").
           </p>
@@ -103,8 +118,8 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
             <strong>Rent.</strong> The Tenant agrees to pay to the Landlord as rent for the use
             and occupancy of the Leased Property the sum of $<Pill value={s.rentAmount} step={7} /> due on
             the <Pill value={s.rentDueDay} step={7} /> day of each month ("Rent").
-            The first month's Rent, ranging from <Pill /> to <Pill />, will be pro-rated at a
-            rate of $<Pill />.
+            The first month's Rent, ranging from <Pill value={s.proRateFrom} step={7} /> to <Pill value={s.proRateTo} step={7} />, will be pro-rated at a
+            rate of $<Pill value={s.proRateAmount} step={7} />.
           </p>
 
           <p style={{ marginBottom: '8px' }}>The Rent shall be paid by the following method(s):</p>
@@ -169,7 +184,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
 
           <p style={{ marginBottom: '20px' }}>
             <strong>Governing Law.</strong> This Lease shall be governed by and construed in
-            accordance with the laws of the State of California.
+            accordance with the laws of the State of <Pill value={stateLabel(s.propertyState) || undefined} step={6} />.
           </p>
 
           <div style={{ marginTop: '48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>

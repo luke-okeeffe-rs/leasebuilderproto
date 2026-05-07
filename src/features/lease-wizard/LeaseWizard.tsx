@@ -1,8 +1,10 @@
-import { useReducer, useRef, useEffect } from 'react';
-import { leaseFormReducer, initialState, canContinue } from './state/leaseFormReducer';
+import { useReducer, useRef, useEffect, useState } from 'react';
+import { leaseFormReducer, initialState, validateStep } from './state/leaseFormReducer';
+import { US_STATES } from './steps/usStates';
 import { WizardHeader } from './WizardHeader';
 import { WizardFooter } from './WizardFooter';
 import { ProgressBlock } from './ProgressBlock';
+import { LegalNameModal } from './components/LegalNameModal';
 import { Step1LandlordType } from './steps/Step1LandlordType';
 import { Step2LandlordInfo } from './steps/Step2LandlordInfo';
 import { Step3TenantInfo } from './steps/Step3TenantInfo';
@@ -15,6 +17,7 @@ import { LeaseDocumentPreview } from './preview/LeaseDocumentPreview';
 
 export function LeaseWizard() {
   const [state, dispatch] = useReducer(leaseFormReducer, initialState);
+  const [showModal, setShowModal] = useState(false);
   const documentRef = useRef<HTMLDivElement>(null);
   const wizardRef = useRef<HTMLDivElement>(null);
   const { currentStep } = state;
@@ -37,6 +40,29 @@ export function LeaseWizard() {
   }
 
   function handleContinue() {
+    if (currentStep === 7) {
+      for (let step = 1; step <= 7; step++) {
+        const errors = validateStep(step, state);
+        if (Object.keys(errors).length > 0) {
+          dispatch({ type: 'GOTO_STEP_WITH_ERRORS', step, errors });
+          requestAnimationFrame(() => { requestAnimationFrame(() => { scrollToWizard(); }); });
+          return;
+        }
+      }
+      setShowModal(true);
+      return;
+    }
+
+    dispatch({ type: 'NEXT_STEP' });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        scrollToDocument();
+      });
+    });
+  }
+
+  function handleModalSave() {
+    setShowModal(false);
     dispatch({ type: 'NEXT_STEP' });
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
@@ -60,9 +86,16 @@ export function LeaseWizard() {
   }
 
   const isCompletion = currentStep === 8;
+  const propertyStateLabel = US_STATES.find(s => s.value === state.propertyState)?.label;
 
   return (
     <div className="bg-white">
+      {showModal && (
+        <LegalNameModal
+          onSave={handleModalSave}
+          onClose={() => setShowModal(false)}
+        />
+      )}
       <WizardHeader />
       {/* Spacer so page content starts below the fixed header */}
       <div className="h-[100px]" />
@@ -73,7 +106,7 @@ export function LeaseWizard() {
         className="flex flex-col items-center bg-white py-[32px] gap-[32px]"
       >
         <div className="w-[650px] flex flex-col gap-[40px]">
-          {!isCompletion && <ProgressBlock step={currentStep} />}
+          {!isCompletion && <ProgressBlock step={currentStep} propertyState={propertyStateLabel} />}
 
           {currentStep === 1 && <Step1LandlordType state={state} dispatch={dispatch} />}
           {currentStep === 2 && <Step2LandlordInfo state={state} dispatch={dispatch} />}
@@ -87,7 +120,6 @@ export function LeaseWizard() {
 
         <WizardFooter
           step={currentStep}
-          canContinue={isCompletion ? false : canContinue(currentStep, state)}
           onBack={handleBack}
           onContinue={handleContinue}
         />

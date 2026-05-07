@@ -32,6 +32,9 @@ export interface LeaseFormState {
   endDate: string;
   rentAmount: string;
   rentDueDay: string;
+  proRateFrom: string;
+  proRateTo: string;
+  proRateAmount: string;
   securityDeposit: string;
   paymentMethod: string;
   // Validation
@@ -45,4 +48,5 @@ export type LeaseFormAction =
   | { type: 'SET_ERRORS'; errors: Record<string, string> }
   | { type: 'NEXT_STEP' }
   | { type: 'PREV_STEP' }
-  | { type: 'GOTO_STEP'; step: number };
+  | { type: 'GOTO_STEP'; step: number }
+  | { type: 'GOTO_STEP_WITH_ERRORS'; step: number; errors: Record<string, string> };

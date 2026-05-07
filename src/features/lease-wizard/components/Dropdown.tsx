@@ -20,6 +20,7 @@ export function Dropdown({ label, name, value, onChange, options, required, erro
   const isFloated = focused || value.length > 0;
 
   return (
+    <div className="flex flex-col">
     <div className="relative h-[48px]">
       <select
         id={name}
@@ -66,8 +67,9 @@ export function Dropdown({ label, name, value, onChange, options, required, erro
         </div>
       )}
 
+      </div>
       {error && (
-        <p className="absolute top-full mt-[4px] left-0 text-[12px] text-red-500">{error}</p>
+        <p className="text-[12px] text-red-500 mt-[4px]">{error}</p>
       )}
     </div>
   );
