@@ -24,6 +24,13 @@ export function Step7LeaseTerms({ state, dispatch }: Props) {
       </div>
       <div className="flex flex-col gap-[16px] w-[335px]">
         <Input
+          label="Lease execution date"
+          name="leaseDate"
+          value={state.leaseDate}
+          onChange={field('leaseDate')}
+          error={state.errors.leaseDate}
+        />
+        <Input
           label="Lease start date"
           name="startDate"
           type="date"

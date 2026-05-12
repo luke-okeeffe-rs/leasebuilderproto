@@ -144,8 +144,7 @@ export function PaywallModal({ onClose, onContinue }: Props) {
               </div>
 
               <button
-                onClick={onClose}
-                className="h-[48px] px-[16px] bg-[#2E6DA4] hover:bg-[#255a8a] rounded-[6px] text-white text-[16px] font-bold leading-[24px] border-none cursor-pointer transition-colors self-start"
+                className="h-[48px] px-[16px] bg-[#2E6DA4] rounded-[6px] text-white text-[16px] font-bold leading-[24px] border-none cursor-pointer self-start"
                 style={{ fontFamily: "'Open Sans', sans-serif" }}
               >
                 View plans
