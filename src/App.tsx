@@ -4,6 +4,7 @@ import { DocumentsPage } from './pages/DocumentsPage';
 import { AgreementsPage } from './pages/AgreementsPage';
 import { AgreementsListPage } from './pages/AgreementsListPage';
 import { LeaseWizard } from './features/lease-wizard/LeaseWizard';
+import { PropertySelectionPage } from './pages/PropertySelectionPage';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/documents/agreements/list" element={<AgreementsListPage />} />
         <Route path="/documents/saved" element={<DocumentsPage />} />
         <Route path="/documents/landlord-forms" element={<DocumentsPage />} />
+        <Route path="/documents/new-lease/select-property" element={<PropertySelectionPage />} />
         <Route path="/documents/new-lease" element={<LeaseWizard />} />
       </Routes>
     </BrowserRouter>

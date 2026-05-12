@@ -23,7 +23,7 @@ export function AgreementsPage() {
     if (isFree) {
       setShowPaywall(true);
     } else {
-      navigate('/documents/new-lease');
+      navigate('/documents/new-lease/select-property');
     }
   }
 
@@ -32,7 +32,7 @@ export function AgreementsPage() {
       {showPaywall && (
         <PaywallModal
           onClose={() => setShowPaywall(false)}
-          onContinue={() => { setShowPaywall(false); navigate('/documents/new-lease'); }}
+          onContinue={() => { setShowPaywall(false); navigate('/documents/new-lease/select-property'); }}
         />
       )}
       {/* Page header */}
