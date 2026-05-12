@@ -16,7 +16,7 @@ export function PropertySelectionPage() {
   const [open, setOpen] = useState(false);
 
   function handleContinue() {
-    if (selected) navigate('/documents/new-lease');
+    if (selected) navigate('/documents/new-lease', { state: { selectedProperty: selected } });
   }
 
   return (

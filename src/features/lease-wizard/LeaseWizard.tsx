@@ -20,6 +20,7 @@ interface RouterState {
   openModal?: boolean;
   leaseName?: string;
   propertyAddress?: string;
+  selectedProperty?: string;
 }
 
 export function LeaseWizard() {
@@ -32,6 +33,15 @@ export function LeaseWizard() {
       const saved = localStorage.getItem('lease-wizard-draft');
       if (saved) return JSON.parse(saved);
     } catch {}
+    if (routerState.selectedProperty) {
+      const parts = routerState.selectedProperty.split(', ');
+      const street = parts[0] ?? '';
+      const city = parts[1] ?? '';
+      const stateZip = (parts[2] ?? '').split(' ');
+      const st = stateZip[0] ?? '';
+      const zip = stateZip[1] ?? '';
+      return { ...init, propertyStreet: street, propertyCity: city, propertyState: st, propertyZip: zip };
+    }
     return init;
   });
   const [showModal, setShowModal] = useState(false);
