@@ -26,6 +26,7 @@ export function Step7LeaseTerms({ state, dispatch }: Props) {
         <Input
           label="Lease execution date"
           name="leaseDate"
+          type="date"
           value={state.leaseDate}
           onChange={field('leaseDate')}
           error={state.errors.leaseDate}
