@@ -83,14 +83,14 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
             color: '#282B2F',
           }}
         >
-          {stateLabel(s.propertyState) ? <><Pill value={stateLabel(s.propertyState)} step={6} />{' '}</> : null}Lease Agreement
+          {stateLabel(s.propertyState) ? <><Pill value={stateLabel(s.propertyState)} step={5} />{' '}</> : null}Lease Agreement
         </h1>
 
         <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: '13.5px', lineHeight: '1.85', color: '#282B2F' }}>
 
           <p style={{ marginBottom: '20px' }}>
             This Lease Agreement ("Lease") is entered into on
-            <Pill value={s.leaseDate} step={7} />, by and between
+            <Pill value={s.leaseDate} step={6} />, by and between
             <Pill value={s.landlordName} step={2} /> ("Landlord"), and
             <Pill value={s.tenantName} step={3} /> ("Tenant").
           </p>
@@ -98,17 +98,17 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
           <p style={{ marginBottom: '20px' }}>
             <strong>Leased Property.</strong> The Landlord hereby leases to the Tenant the{' '}
             {propertyTypeLabel ? propertyTypeLabel.toLowerCase() : 'property'} located at
-            <Pill value={s.propertyStreet} step={6} />,
-            <Pill value={s.propertyCity} step={6} />,
-            <Pill value={stateLabel(s.propertyState) || undefined} step={6} />
-            <Pill value={s.propertyZip} step={6} />
+            <Pill value={s.propertyStreet} step={5} />,
+            <Pill value={s.propertyCity} step={5} />,
+            <Pill value={stateLabel(s.propertyState) || undefined} step={5} />
+            <Pill value={s.propertyZip} step={5} />
             {' '}("Leased Property").
           </p>
 
           <p style={{ marginBottom: '20px' }}>
             <strong>Term.</strong> This Lease shall be for a fixed term, starting on
-            <Pill value={s.startDate} step={7} /> ("Start Date") and ending on
-            <Pill value={s.endDate} step={7} /> ("Termination Date"). The Tenant will be
+            <Pill value={s.startDate} step={6} /> ("Start Date") and ending on
+            <Pill value={s.endDate} step={6} /> ("Termination Date"). The Tenant will be
             entitled to possession of the Leased Property beginning on the Start Date and shall
             maintain possession of the Leased Property until the Termination Date unless
             terminated through approved methods outlined in this Lease or under California law.
@@ -116,10 +116,8 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
 
           <p style={{ marginBottom: '8px' }}>
             <strong>Rent.</strong> The Tenant agrees to pay to the Landlord as rent for the use
-            and occupancy of the Leased Property the sum of $<Pill value={s.rentAmount} step={7} /> due on
-            the <Pill value={s.rentDueDay} step={7} /> day of each month ("Rent").
-            The first month's Rent, ranging from <Pill value={s.proRateFrom} step={7} /> to <Pill value={s.proRateTo} step={7} />, will be pro-rated at a
-            rate of $<Pill value={s.proRateAmount} step={7} />.
+            and occupancy of the Leased Property the sum of $<Pill value={s.rentAmount} step={6} /> due on
+            the <Pill value={s.rentDueDay} step={6} /> day of each month ("Rent").
           </p>
 
           <p style={{ marginBottom: '8px' }}>The Rent shall be paid by the following method(s):</p>
@@ -135,7 +133,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
             The following electronic payment methods will be accepted:
           </p>
           <p style={{ marginLeft: '32px', marginBottom: '20px' }}>
-            - <Pill value={s.paymentMethod} step={7} />
+            - <Pill value={s.paymentMethod} step={6} />
           </p>
 
           <p style={{ marginBottom: '20px' }}>
@@ -165,7 +163,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
 
           <p style={{ marginBottom: '20px' }}>
             <strong>Security Deposit.</strong> Upon the execution of this Lease, the Tenant shall
-            deposit with the Landlord the sum of $<Pill value={s.securityDeposit} step={7} /> as a security
+            deposit with the Landlord the sum of $<Pill value={s.securityDeposit} step={6} /> as a security
             deposit. This security deposit shall be returned to the Tenant within twenty-one (21)
             days after the Tenant vacates the Leased Property, less any amounts withheld by the
             Landlord for unpaid rent or damage beyond normal wear and tear.
@@ -184,7 +182,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
 
           <p style={{ marginBottom: '20px' }}>
             <strong>Governing Law.</strong> This Lease shall be governed by and construed in
-            accordance with the laws of the State of <Pill value={stateLabel(s.propertyState) || undefined} step={6} />.
+            accordance with the laws of the State of <Pill value={stateLabel(s.propertyState) || undefined} step={5} />.
           </p>
 
           <div style={{ marginTop: '48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
@@ -194,7 +192,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
                 <Pill value={s.landlordName} step={2} />
               </p>
               <p style={{ color: '#545D66', fontSize: '12px' }}>Landlord Signature</p>
-              <p style={{ color: '#545D66', fontSize: '12px', marginTop: '8px' }}>Date: <Pill value={s.leaseDate} step={7} /></p>
+              <p style={{ color: '#545D66', fontSize: '12px', marginTop: '8px' }}>Date: <Pill value={s.leaseDate} step={6} /></p>
             </div>
             <div>
               <div style={{ borderBottom: '1px solid #282B2F', marginBottom: '8px', paddingBottom: '40px' }} />
@@ -202,7 +200,7 @@ export function LeaseDocumentPreview({ state, goToStep }: Props) {
                 <Pill value={s.tenantName} step={3} />
               </p>
               <p style={{ color: '#545D66', fontSize: '12px' }}>Tenant Signature</p>
-              <p style={{ color: '#545D66', fontSize: '12px', marginTop: '8px' }}>Date: <Pill value={s.leaseDate} step={7} /></p>
+              <p style={{ color: '#545D66', fontSize: '12px', marginTop: '8px' }}>Date: <Pill value={s.leaseDate} step={6} /></p>
             </div>
           </div>
         </div>

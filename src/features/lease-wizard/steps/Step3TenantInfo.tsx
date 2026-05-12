@@ -28,6 +28,8 @@ export function Step3TenantInfo({ state, dispatch }: Props) {
           name="tenantName"
           value={state.tenantName}
           onChange={field('tenantName')}
+          required
+          error={state.errors.tenantName}
         />
         <Input
           label="Phone number"
@@ -35,6 +37,8 @@ export function Step3TenantInfo({ state, dispatch }: Props) {
           value={state.tenantPhone}
           onChange={field('tenantPhone')}
           type="tel"
+          required
+          error={state.errors.tenantPhone}
         />
         <Input
           label="Email address"
@@ -42,6 +46,8 @@ export function Step3TenantInfo({ state, dispatch }: Props) {
           value={state.tenantEmail}
           onChange={field('tenantEmail')}
           type="email"
+          required
+          error={state.errors.tenantEmail}
         />
       </div>
     </>

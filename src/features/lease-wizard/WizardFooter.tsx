@@ -5,7 +5,7 @@ interface WizardFooterProps {
 }
 
 export function WizardFooter({ step, onBack, onContinue }: WizardFooterProps) {
-  const isLastStep = step === 7;
+  const isLastStep = step === 6;
 
   return (
     <div className="w-full h-[88px] bg-white shadow-elev-1-rev flex items-center justify-between px-[24px] flex-shrink-0">

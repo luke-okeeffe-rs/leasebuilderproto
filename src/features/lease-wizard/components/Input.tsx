@@ -12,7 +12,7 @@ interface InputProps {
 
 export function Input({ label, name, value, onChange, type = 'text', required, error }: InputProps) {
   const [focused, setFocused] = useState(false);
-  const isFloated = focused || value.length > 0;
+  const isFloated = focused || value.length > 0 || type === 'date';
 
   return (
     <div className="flex flex-col">

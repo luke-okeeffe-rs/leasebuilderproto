@@ -24,15 +24,9 @@ export function Step7LeaseTerms({ state, dispatch }: Props) {
       </div>
       <div className="flex flex-col gap-[16px] w-[335px]">
         <Input
-          label="Lease execution date"
-          name="leaseDate"
-          value={state.leaseDate}
-          onChange={field('leaseDate')}
-          error={state.errors.leaseDate}
-        />
-        <Input
           label="Lease start date"
           name="startDate"
+          type="date"
           value={state.startDate}
           onChange={field('startDate')}
           required
@@ -41,6 +35,7 @@ export function Step7LeaseTerms({ state, dispatch }: Props) {
         <Input
           label="Lease end date"
           name="endDate"
+          type="date"
           value={state.endDate}
           onChange={field('endDate')}
           required
@@ -61,27 +56,7 @@ export function Step7LeaseTerms({ state, dispatch }: Props) {
           onChange={field('rentDueDay')}
           error={state.errors.rentDueDay}
         />
-        <Input
-          label="Pro-rated rent from (date)"
-          name="proRateFrom"
-          value={state.proRateFrom}
-          onChange={field('proRateFrom')}
-          error={state.errors.proRateFrom}
-        />
-        <Input
-          label="Pro-rated rent to (date)"
-          name="proRateTo"
-          value={state.proRateTo}
-          onChange={field('proRateTo')}
-          error={state.errors.proRateTo}
-        />
-        <Input
-          label="Pro-rated daily rate ($)"
-          name="proRateAmount"
-          value={state.proRateAmount}
-          onChange={field('proRateAmount')}
-          error={state.errors.proRateAmount}
-        />
+
         <Input
           label="Security deposit ($)"
           name="securityDeposit"
